@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { ThemeContext } from 'styled-components';
 import api from '../../services/api';
 
 import { Header, RepositoryInfo, Issues } from './styles';
 import logoImg from '../../assets/logo.svg';
+import logoImg2 from '../../assets/logo-2.svg';
 
 interface Repository {
   full_name: string;
@@ -37,6 +39,8 @@ const Repository: React.FC = () => {
 
   const { params } = useRouteMatch<RepositoryParams>();
 
+  const { title } = useContext(ThemeContext);
+
   useEffect(() => {
     api.get(`repos/${params.repository}`).then(response => {
       setRepository(response.data);
@@ -49,7 +53,10 @@ const Repository: React.FC = () => {
   return (
     <>
       <Header>
-        <img src={logoImg} alt="Github Explorer" />
+        <img
+          src={title === 'dark' ? logoImg2 : logoImg}
+          alt="Github Explorer"
+        />
         <Link to="/">
           <FiChevronLeft size={16} />
           Voltar

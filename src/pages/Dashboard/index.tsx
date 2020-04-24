@@ -1,10 +1,13 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from 'styled-components';
+import Switch from 'react-switch';
 import { FiChevronRight } from 'react-icons/fi';
 
 import api from '../../services/api';
 import logoImg from '../../assets/logo.svg';
-import { Title, Form, Repositories, Error } from './styles';
+import logoImg2 from '../../assets/logo-2.svg';
+import { Title, Form, Repositories, Error, Header } from './styles';
 
 interface Repository {
   full_name: string;
@@ -15,7 +18,11 @@ interface Repository {
   };
 }
 
-const Dashboard: React.FC = () => {
+interface Props {
+  toggleTheme(): void;
+}
+
+function Dashboard({ toggleTheme }: Props): React.ReactElement {
   const [newRepo, setNewRepo] = useState('');
   const [inputError, setInputError] = useState('');
   const [repositories, setRepositories] = useState<Repository[]>(() => {
@@ -28,6 +35,8 @@ const Dashboard: React.FC = () => {
     }
     return [];
   });
+
+  const { title } = useContext(ThemeContext);
 
   useEffect(() => {
     localStorage.setItem(
@@ -61,7 +70,21 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <img src={logoImg} alt="Github Explorer" />
+      <Header>
+        <img
+          src={title === 'dark' ? logoImg2 : logoImg}
+          alt="Github Explorer"
+        />
+
+        <Switch
+          onChange={toggleTheme}
+          checked={title === 'dark'}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          offColor="#ccc"
+          onColor="#333"
+        />
+      </Header>
       <Title>Explore repositórios no Github</Title>
 
       <Form hasError={!!inputError} onSubmit={handleAddRepository}>
@@ -96,6 +119,6 @@ const Dashboard: React.FC = () => {
       </Repositories>
     </>
   );
-};
+}
 
 export default Dashboard;

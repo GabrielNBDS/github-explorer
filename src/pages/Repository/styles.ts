@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Header = styled.header`
   display: flex;
@@ -9,11 +10,11 @@ export const Header = styled.header`
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #a8a8b3;
+    color: ${props => props.theme.colors.text};
     transition: color 0.2s;
 
     &:hover {
-      color: #666;
+      color: ${props => shade(0.4, props.theme.colors.text)};
     }
   }
 
@@ -41,7 +42,7 @@ export const RepositoryInfo = styled.section`
 
     strong {
       font-size: 36px;
-      color: #3d3d4d;
+      color: ${props => props.theme.colors.text};
     }
 
     p {
@@ -63,7 +64,7 @@ export const RepositoryInfo = styled.section`
       strong {
         display: block;
         font-size: 36px;
-        color: #3d3d4d;
+        color: ${props => props.theme.colors.text};
       }
 
       span {
@@ -79,7 +80,7 @@ export const Issues = styled.div`
   margin-top: 80px;
 
   a {
-    background: #fff;
+    background: ${props => props.theme.colors.repoBackground};
     border-radius: 5px;
     width: 100%;
     padding: 24px;
@@ -104,7 +105,7 @@ export const Issues = styled.div`
 
     strong {
       font-size: 20px;
-      color: #3d3d4d;
+      color: ${props => props.theme.colors.text};
     }
 
     p {

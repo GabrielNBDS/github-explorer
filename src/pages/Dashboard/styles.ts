@@ -5,9 +5,14 @@ interface FormProps {
   hasError: boolean;
 }
 
+export const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const Title = styled.h1`
   font-size: 48px;
-  color: #3a3a3a;
+  color: ${props => props.theme.colors.text};
   max-width: 450px;
   line-height: 56px;
 
@@ -25,7 +30,7 @@ export const Form = styled.form<FormProps>`
     padding: 0 24px;
     border: 0;
     border-radius: 5px 0 0 5px;
-    color: #3a3a3a;
+    color: '#3a3a3a';
     border: 2px solid #fff;
     border-right: 0;
 
@@ -66,7 +71,7 @@ export const Repositories = styled.div`
   max-width: 700px;
 
   a {
-    background: #fff;
+    background: ${props => props.theme.colors.repoBackground};
     border-radius: 5px;
     width: 100%;
     padding: 24px;
@@ -97,7 +102,7 @@ export const Repositories = styled.div`
 
     strong {
       font-size: 20px;
-      color: #3d3d4d;
+      color: ${props => props.theme.colors.text};
     }
 
     p {
