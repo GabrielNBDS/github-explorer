@@ -2,7 +2,7 @@
   <img width=400px src="src/assets/logo.svg"/>
 </p>
 
-<h1 align="center">Link para o app: https://ghexplorer.netlify.app/ </h1>
+<h3 align="center">Link para o app: https://ghexplorer.netlify.app/ </h3>
 
 <p align="center">
   <img width=800px src="assets/ghexplorer.png"/>
